@@ -14,12 +14,12 @@ import java.util.List;
 public class bookingController {
 
     @Autowired
-    private bookingRepository repository; // make sure this matches the name used below
+    private bookingRepository repository;
 
     @Autowired
-    private bookingService service; // We talk to Service, NOT Repository
+    private bookingService service;
 
-    // POST: Create a new booking
+    
     @PostMapping
     public booking createBooking(@RequestBody bookingRequest request) {
         return service.createBooking(request);

@@ -25,14 +25,11 @@ public class bookingController {
         return service.createBooking(request);
     }
 
-    // GET: Get all bookings
     @GetMapping
     public List<booking> getAllBookings() {
         return service.getAllBookings();
     }
 
-    // GET: Get bookings for a specific user
-    // This fixes the "getBookingsByUser" error
     @GetMapping("/user/{userId}")
     public List<booking> getBookingsByUser(String userId) {
         return repository.findByUserId(userId);

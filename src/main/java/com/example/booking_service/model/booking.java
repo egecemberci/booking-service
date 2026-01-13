@@ -15,21 +15,18 @@ public class booking {
 
     private String userId;
 
-    // --- THIS WAS MISSING ---
-    // The Service was trying to call .setEventId(), but this line didn't exist.
     private String eventId; 
-    // ------------------------
 
-    // The Timeframe fields you asked for
+    // Timeframes of when the booking is valid
     private LocalDateTime startTime; 
     private LocalDateTime endTime;
 
     private Double totalAmount;
-    private String status; // "PENDING", "CONFIRMED", etc.
+    private String status;
     
     private LocalDateTime bookingDate = LocalDateTime.now();
     
-    // MANUAL SETTER (Just in case Lombok is acting slow)
+    // manual setter to avoid weird undefined cases
     public void setEventId(String eventId) {
         this.eventId = eventId;
     }

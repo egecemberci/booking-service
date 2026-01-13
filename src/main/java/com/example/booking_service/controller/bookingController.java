@@ -1,0 +1,40 @@
+package com.example.booking_service.controller;
+
+import com.example.booking_service.dto.bookingRequest;
+import com.example.booking_service.model.booking;
+import com.example.booking_service.repository.bookingRepository;
+import com.example.booking_service.service.bookingService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/bookings")
+public class bookingController {
+
+    @Autowired
+    private bookingRepository repository; // make sure this matches the name used below
+
+    @Autowired
+    private bookingService service; // We talk to Service, NOT Repository
+
+    // POST: Create a new booking
+    @PostMapping
+    public booking createBooking(@RequestBody bookingRequest request) {
+        return service.createBooking(request);
+    }
+
+    // GET: Get all bookings
+    @GetMapping
+    public List<booking> getAllBookings() {
+        return service.getAllBookings();
+    }
+
+    // GET: Get bookings for a specific user
+    // This fixes the "getBookingsByUser" error
+    @GetMapping("/user/{userId}")
+    public List<booking> getBookingsByUser(String userId) {
+        return repository.findByUserId(userId);
+    }
+}
